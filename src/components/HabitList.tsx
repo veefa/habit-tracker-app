@@ -10,7 +10,7 @@ interface HabitListProps {
 const HabitList: React.FC<HabitListProps> = ({habits, onCompleteHabit}) => {
 
     return ( 
-        <div>
+        <div className="space-y-4">
             {habits.map((habit) => (
                 <HabitItem key={habit.id} habit={habit} onComplete={onCompleteHabit}  />
             ))}
