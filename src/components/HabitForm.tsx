@@ -35,8 +35,8 @@ const HabitForm: React.FC<HabitFormProps> = ({ onAddHabit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 bg-white shadow p-5 rounded-xl">
-      {/* Input a habit name */}  
+      className="space-y-4 bg-blue-100 shadow p-5 rounded-xl">
+      {/* Input a habit name */}
       <div>
         <label className="block font-semibold text-blue-950 text-sm">
           Habit Name
@@ -76,7 +76,7 @@ const HabitForm: React.FC<HabitFormProps> = ({ onAddHabit }) => {
       </div>
       <button
         type="submit"
-        className="bg-blue-950 hover:bg-blue-900 py-2 rounded w-full text-blue-200 transition">
+        className="bg-blue-950 hover:bg-blue-900 py-2 rounded w-full text-blue-100 transition">
         Add Habit
       </button>
     </form>
