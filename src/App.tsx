@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import HabitForm from "./components/HabitForm"; 
 import HabitList from "./components/HabitList";
 import { Habit } from "./types/habit";
+import { Toaster } from "react-hot-toast";
 
 const App: React.FC = () => {
   const [habits, setHabits] = useState<Habit[]>([]);
@@ -26,14 +27,18 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-gray-200 min-h-screen">
-      <h1 className="font-bold text-gray-800 text-2xl"></h1>
+    <div className="space-y-6 mx-auto p-4 max-w-md">
+      <h1 className="p-5 font-bold text-gray-800 text-2xl">Habit Tracker</h1>
       {/* Habit Form */}
       <HabitForm onAddHabit={addHabit} />
 
       {/* Habit List */}
       <HabitList habits={habits} onCompleteHabit={completeHabit} />
- 
+  
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+      />
     </div>
     
   );

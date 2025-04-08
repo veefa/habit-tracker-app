@@ -35,7 +35,7 @@ const HabitForm: React.FC<HabitFormProps> = ({ onAddHabit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 bg-white shadow p-4 rounded-xl">
+      className="space-y-4 bg-white shadow p-5 rounded-xl">
       {/* Input a habit name */}  
       <div>
         <label className="block font-semibold text-blue-950 text-sm">
