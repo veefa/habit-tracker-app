@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Habit } from "../types/habit";
 import toast from "react-hot-toast";
-import { isCompletedToday } from "../assets/utils"; // use our helper!
+import { isCompletedToday } from "../assets/utils"; 
+import { FaMinus } from "react-icons/fa";
 
 interface HabitItemProps {
   habit: Habit;
   onComplete: (updatedHabit: Habit) => void; // now sends full habit
+  onDelete: (id: string) => void;
 }
 
-const HabitItem: React.FC<HabitItemProps> = ({ habit, onComplete }) => {
+const HabitItem: React.FC<HabitItemProps> = ({ habit, onComplete, onDelete }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -29,24 +31,37 @@ const HabitItem: React.FC<HabitItemProps> = ({ habit, onComplete }) => {
   };
 
   return (
-    <div
-      className={`space-y-2 shadow p-4 border rounded-md transition-all duration-300 ${
-        isChecked ? "opacity-60 scale-95" : ""
-      }`}
-      style={{ backgroundColor: habit.color }}>
-      <div className="flex justify-between items-center text-blue-950">
-        <h3 className="font-medium text-lg">{habit.name}</h3>
-        <input
-          type="checkbox"
-          checked={isCompletedToday(habit)} // ✅ use helper for clarity
-          onChange={handleCheckboxChange}
-          className="w-6 h-6"
-        />
-      </div>
-      <p className="text-gray-600 text-sm">
-        {isCompletedToday(habit) ? "✅ Done today" : `Frequency: ${habit.frequency}`}
-      </p>
+    <div className="flex items-start gap-3">
+  {/* Minus icon OUTSIDE the card */}
+  <button
+    className="mt-2 text-red-400 hover:text-red-700 text-base"
+    onClick={() => onDelete(habit.id)}
+    title="Delete habit"
+  >
+    <FaMinus />
+  </button>
+
+  {/* Colored habit card */}
+  <div
+    className={`flex-1 space-y-2 shadow p-4 border rounded-md transition-all duration-300 ${
+      isChecked ? "opacity-60 scale-95" : ""
+    }`}
+    style={{ backgroundColor: habit.color }}
+  >
+    <div className="flex justify-between items-center text-blue-950">
+      <h3 className="font-medium text-lg">{habit.name}</h3>
+      <input
+        type="checkbox"
+        checked={isCompletedToday(habit)}
+        onChange={handleCheckboxChange}
+        className="w-6 h-6"
+      />
     </div>
+    <p className="text-gray-600 text-sm">
+      {isCompletedToday(habit) ? "✅ Done today" : `Frequency: ${habit.frequency}`}
+    </p>
+  </div>
+</div>
   );
 };
 
