@@ -3,6 +3,8 @@ import { Habit } from "../types/habit";
 import toast from "react-hot-toast";
 import { isCompletedToday } from "../assets/utils"; 
 import { FaMinus } from "react-icons/fa";
+import { MdDoneOutline } from "react-icons/md";
+
 
 interface HabitItemProps {
   habit: Habit;
@@ -31,6 +33,7 @@ const HabitItem: React.FC<HabitItemProps> = ({ habit, onComplete, onDelete }) =>
   };
 
   return (
+  
     <div className="flex items-start gap-3">
   {/* Minus icon OUTSIDE the card */}
   <button
@@ -57,8 +60,10 @@ const HabitItem: React.FC<HabitItemProps> = ({ habit, onComplete, onDelete }) =>
         className="w-6 h-6"
       />
     </div>
-    <p className="text-gray-600 text-sm">
-      {isCompletedToday(habit) ? "✅ Done today" : `Frequency: ${habit.frequency}`}
+    <p className="text-gray-60 text-base">
+    {isCompletedToday(habit)
+    ? <><MdDoneOutline className="inline-block mr-2 text-green-300 text-lg" /> Done today</>
+    : `Frequency: ${habit.frequency}`}
     </p>
   </div>
 </div>
